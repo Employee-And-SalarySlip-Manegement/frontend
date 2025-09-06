@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 import '@/styles/index.css';
 import Home from '@/pages/Home';
+import Login from '@/pages/Login';
 
 // Placeholder components for future routes
-const Login = () => <div>Login Page - Coming Soon</div>;
 const Dashboard = () => <div>Dashboard - Coming Soon</div>;
 const Profile = () => <div>Profile - Coming Soon</div>;
 
