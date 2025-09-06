@@ -8,7 +8,7 @@ import './Login.css';
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { login, isLoading, isAuthenticated, error, clearError } = useAuth();
+  const { login, isLoading, isAuthenticated, user, error, clearError } = useAuth();
 
   // Form state
   const [formData, setFormData] = useState({
@@ -25,11 +25,14 @@ const Login = () => {
 
   // Redirect if already authenticated
   useEffect(() => {
-    if (isAuthenticated) {
-      const from = location.state?.from?.pathname || ROUTES.DASHBOARD;
-      navigate(from, { replace: true });
+    if (isAuthenticated && user) {
+      const from = location.state?.from?.pathname;
+      const defaultRoute = user.role === 'admin' 
+        ? '/admin/dashboard' 
+        : '/employee/dashboard';
+      navigate(from || defaultRoute, { replace: true });
     }
-  }, [isAuthenticated, navigate, location]);
+  }, [isAuthenticated, user, navigate, location]);
 
   // Clear errors when component mounts
   useEffect(() => {
@@ -125,8 +128,11 @@ const Login = () => {
     const result = await login(formData);
     
     if (result.success) {
-      const from = location.state?.from?.pathname || ROUTES.DASHBOARD;
-      navigate(from, { replace: true });
+      const from = location.state?.from?.pathname;
+      const defaultRoute = result.data.role === 'admin' 
+        ? '/admin/dashboard' 
+        : '/employee/dashboard';
+      navigate(from || defaultRoute, { replace: true });
     }
   };
 

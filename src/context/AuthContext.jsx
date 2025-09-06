@@ -24,19 +24,26 @@ export const useAuthStore = create(
         
         try {
           const response = await authAPI.login(credentials);
-          const { user, token, refreshToken } = response.data.data;
+          const { user, token, refreshToken, role } = response.data.data;
 
-          // Store tokens in cookies
-          Cookies.set(AUTH_CONFIG.TOKEN_KEY, token, { 
+          // Store tokens in cookies with secure settings
+          const cookieOptions = {
             expires: 7,
-            secure: true,
+            secure: window.location.protocol === 'https:',
             sameSite: 'Lax'
-          });
-          Cookies.set(AUTH_CONFIG.REFRESH_TOKEN_KEY, refreshToken, { 
+          };
+          
+          const refreshOptions = {
             expires: 30,
-            secure: true,
+            secure: window.location.protocol === 'https:',
             sameSite: 'Lax'
-          });
+          };
+
+          Cookies.set(AUTH_CONFIG.TOKEN_KEY, token, cookieOptions);
+          Cookies.set(AUTH_CONFIG.REFRESH_TOKEN_KEY, refreshToken, refreshOptions);
+
+          // Store user in localStorage for persistence
+          localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
 
           set({
             user,
@@ -47,7 +54,7 @@ export const useAuthStore = create(
           });
 
           toast.success(`Welcome back, ${user.name}!`);
-          return { success: true, data: { user, token } };
+          return { success: true, data: { user, token, role } };
         } catch (error) {
           const errorMessage = error.response?.data?.message || 'Login failed';
           set({ 
@@ -61,47 +68,7 @@ export const useAuthStore = create(
         }
       },
 
-      register: async (userData) => {
-        set({ isLoading: true, error: null });
-        
-        try {
-          const response = await authAPI.register(userData);
-          const { user, token, refreshToken } = response.data.data;
-
-          // Store tokens in cookies
-          Cookies.set(AUTH_CONFIG.TOKEN_KEY, token, { 
-            expires: 7,
-            secure: true,
-            sameSite: 'Lax'
-          });
-          Cookies.set(AUTH_CONFIG.REFRESH_TOKEN_KEY, refreshToken, { 
-            expires: 30,
-            secure: true,
-            sameSite: 'Lax'
-          });
-
-          set({
-            user,
-            token,
-            isAuthenticated: true,
-            isLoading: false,
-            error: null,
-          });
-
-          toast.success('Account created successfully!');
-          return { success: true, data: { user, token } };
-        } catch (error) {
-          const errorMessage = error.response?.data?.message || 'Registration failed';
-          set({ 
-            isLoading: false, 
-            error: errorMessage,
-            isAuthenticated: false,
-            user: null,
-            token: null
-          });
-          return { success: false, error: errorMessage };
-        }
-      },
+      // Note: Registration disabled - users are created by admin only
 
       logout: async () => {
         set({ isLoading: true });
@@ -114,6 +81,9 @@ export const useAuthStore = create(
           // Clear tokens from cookies
           Cookies.remove(AUTH_CONFIG.TOKEN_KEY);
           Cookies.remove(AUTH_CONFIG.REFRESH_TOKEN_KEY);
+          
+          // Clear localStorage
+          localStorage.removeItem(STORAGE_KEYS.USER);
 
           // Clear state
           set({
@@ -172,6 +142,16 @@ export const useAuthStore = create(
       hasPermission: (permission) => {
         const { user } = get();
         return user?.permissions?.includes(permission);
+      },
+
+      // Get user's dashboard route based on role
+      getDashboardRoute: () => {
+        const { user } = get();
+        if (!user) return ROUTES.LOGIN;
+        
+        return user.role === 'admin' 
+          ? '/admin/dashboard' 
+          : '/employee/dashboard';
       },
 
       // Forgot password

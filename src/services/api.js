@@ -217,26 +217,36 @@ const apiService = {
 // Auth API methods
 export const authAPI = {
   login: (credentials) => apiService.post('/auth/login', credentials),
-  register: (userData) => apiService.post('/auth/register', userData),
-  logout: () => apiService.post('/auth/logout'),
-  refreshToken: (refreshToken) => apiService.post('/auth/refresh', { refreshToken }),
-  forgotPassword: (email) => apiService.post('/auth/forgot-password', { email }),
-  resetPassword: (token, password) => apiService.post('/auth/reset-password', { token, password }),
-  verifyEmail: (token) => apiService.post('/auth/verify-email', { token }),
-  changePassword: (currentPassword, newPassword) => 
-    apiService.post('/auth/change-password', { currentPassword, newPassword }),
+  logout: () => apiService.get('/auth/logout'),
+  getMe: () => apiService.get('/auth/me'),
+  updateDetails: (data) => apiService.put('/auth/updatedetails', data),
+  updatePassword: (currentPassword, newPassword) => 
+    apiService.put('/auth/updatepassword', { currentPassword, newPassword }),
+  forgotPassword: (email) => apiService.post('/auth/forgotpassword', { email }),
+  resetPassword: (token, password) => apiService.put(`/auth/resetpassword/${token}`, { password }),
 };
 
-// User API methods
+// Admin API methods
+export const adminAPI = {
+  // Employee management
+  createEmployee: (data) => apiService.post('/admin/employees', data),
+  getAllEmployees: (params) => apiService.get('/admin/employees', { params }),
+  getEmployee: (id) => apiService.get(`/admin/employees/${id}`),
+  updateEmployee: (id, data) => apiService.put(`/admin/employees/${id}`, data),
+  deleteEmployee: (id) => apiService.delete(`/admin/employees/${id}`),
+  resetEmployeePassword: (id, newPassword) => 
+    apiService.put(`/admin/employees/${id}/reset-password`, { newPassword }),
+  
+  // Dashboard stats
+  getDashboardStats: () => apiService.get('/admin/stats'),
+};
+
+// User/Employee API methods  
 export const userAPI = {
-  getProfile: () => apiService.get('/users/profile'),
-  updateProfile: (data) => apiService.put('/users/profile', data),
-  uploadAvatar: (formData, onProgress) => apiService.upload('/users/avatar', formData, onProgress),
-  getUsers: (params) => apiService.get('/users', { params }),
-  getUserById: (id) => apiService.get(`/users/${id}`),
-  createUser: (data) => apiService.post('/users', data),
-  updateUser: (id, data) => apiService.put(`/users/${id}`, data),
-  deleteUser: (id) => apiService.delete(`/users/${id}`),
+  getProfile: () => authAPI.getMe(),
+  updateProfile: (data) => authAPI.updateDetails(data),
+  updatePassword: (currentPassword, newPassword) => 
+    authAPI.updatePassword(currentPassword, newPassword),
 };
 
 export { apiService as default, api };
