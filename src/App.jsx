@@ -13,6 +13,12 @@ import Login from '@/pages/Login';
 import AdminDashboard from '@/pages/Admin/Dashboard/Dashboard';
 import EmployeeDashboard from '@/pages/Employee/Dashboard/Dashboard';
 
+// Admin pages
+import Employees from '@/pages/Admin/Employees';
+import SalarySlips from '@/pages/Admin/SalarySlips';
+import Reports from '@/pages/Admin/Reports';
+import Settings from '@/pages/Admin/Settings';
+
 // Placeholder components for future routes
 const Profile = () => <div>Profile - Coming Soon</div>;
 
@@ -47,6 +53,42 @@ function App() {
         element={
           <ProtectedRoute requiredRole="admin">
             <AdminDashboard />
+          </ProtectedRoute>
+        } 
+      />
+      
+      <Route 
+        path="/admin/employees" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <Employees />
+          </ProtectedRoute>
+        } 
+      />
+      
+      <Route 
+        path="/admin/salary-slips" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <SalarySlips />
+          </ProtectedRoute>
+        } 
+      />
+      
+      <Route 
+        path="/admin/reports" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <Reports />
+          </ProtectedRoute>
+        } 
+      />
+      
+      <Route 
+        path="/admin/settings" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <Settings />
           </ProtectedRoute>
         } 
       />
