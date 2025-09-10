@@ -1,57 +1,107 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
+import { adminAPI } from '@/services/api';
+import { PAGINATION } from '@/constants';
+import { useApi } from '@/hooks/useApi';
+import EmployeesToolbar from '@/components/admin/Employees/EmployeesToolbar';
+import EmployeesTable from '@/components/admin/Employees/EmployeesTable';
+import EmployeesPagination from '@/components/admin/Employees/EmployeesPagination';
+import { useNavigate } from 'react-router-dom';
 import './Employees.css';
 
 const Employees = () => {
+  const [search, setSearch] = useState('');
+  // Role filter is fixed to 'employee' for this page
+  const [status, setStatus] = useState('');
+  const [page, setPage] = useState(PAGINATION.DEFAULT_PAGE);
+  const [limit, setLimit] = useState(PAGINATION.DEFAULT_LIMIT);
+
+  const navigate = useNavigate();
+
+  const params = useMemo(() => ({
+    page,
+    limit,
+    search: search.trim() || undefined,
+    role: 'employee',
+    isActive: status === '' ? undefined : status === 'active' ? 'true' : 'false',
+  }), [page, limit, search, status]);
+
+  const { data, loading, error } = useApi(
+    () => adminAPI.getAllEmployees(params),
+    { immediate: true, dependencies: [params] }
+  );
+
+  const users = data?.data?.users || [];
+  const pagination = data?.data?.pagination || { current: 1, pages: 1, total: 0, limit };
+
+  const onSearchChange = (e) => {
+    setSearch(e.target.value);
+    setPage(1);
+  };
+
+  const onRoleChange = (e) => {
+    setRole(e.target.value);
+    setPage(1);
+  };
+
+  const onStatusChange = (e) => {
+    setStatus(e.target.value);
+    setPage(1);
+  };
+
+  const onLimitChange = (e) => {
+    const newLimit = parseInt(e.target.value, 10) || PAGINATION.DEFAULT_LIMIT;
+    setLimit(newLimit);
+    setPage(1);
+  };
+
+  const goToPage = (newPage) => {
+    if (newPage < 1 || newPage > (pagination.pages || 1)) return;
+    setPage(newPage);
+  };
+
+  const handleAdd = () => {
+    // Placeholder: navigate to add employee form route (to be implemented)
+    navigate('/admin/employees/new');
+  };
+
+  const handleEdit = (user) => {
+    // Placeholder: navigate to edit employee page with id
+    navigate(`/admin/employees/${user._id}/edit`);
+  };
+
+  const handleViewSlips = (user) => {
+    navigate(`/admin/salary-slips?userId=${user._id}`);
+  };
+
   return (
     <AdminLayout>
       <div className="admin-employees-page">
         <div className="admin-employees-page-header">
-          <h1 className="admin-employees-page-title">Manage Employee</h1>
-          <p className="admin-employees-page-subtitle">Manage employee accounts and information</p>
+          <h1 className="admin-employees-page-title">Manage Employees</h1>
+          <p className="admin-employees-page-subtitle">View and manage employee accounts</p>
         </div>
 
         <div className="admin-employees-page-content">
-          <div className="admin-employees-coming-soon">
-            <div className="admin-employees-coming-soon-icon">
-              <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" 
-                      d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-            </div>
-            <h2>Employee Management</h2>
-            <p>This feature is coming soon. You'll be able to add, edit, and manage employee accounts from here.</p>
-            <div className="admin-employees-feature-list">
-              <div className="admin-employees-feature-item">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                        d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Add new employees</span>
-              </div>
-              <div className="admin-employees-feature-item">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                        d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Edit employee information</span>
-              </div>
-              <div className="admin-employees-feature-item">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                        d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Manage employee roles</span>
-              </div>
-              <div className="admin-employees-feature-item">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                        d="M5 13l4 4L19 7" />
-                </svg>
-                <span>View employee details</span>
-              </div>
-            </div>
-          </div>
+          <EmployeesToolbar
+            search={search}
+            status={status}
+            limit={limit}
+            onAdd={handleAdd}
+            onSearchChange={onSearchChange}
+            onStatusChange={onStatusChange}
+            onLimitChange={onLimitChange}
+          />
+
+          <EmployeesTable users={users} loading={loading} error={error} onEdit={handleEdit} onViewSlips={handleViewSlips} />
+
+          <EmployeesPagination
+            pagination={pagination}
+            onFirst={() => goToPage(1)}
+            onPrev={() => goToPage(pagination.current - 1)}
+            onNext={() => goToPage(pagination.current + 1)}
+            onLast={() => goToPage(pagination.pages)}
+          />
         </div>
       </div>
     </AdminLayout>
