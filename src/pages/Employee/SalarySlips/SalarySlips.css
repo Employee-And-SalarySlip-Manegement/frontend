@@ -1,0 +1,115 @@
+/* Salary Slips Page Styles */
+.employee-salary-slips-page {
+  min-height: calc(100vh - 70px);
+}
+
+.employee-salary-slips-page-header {
+  margin-bottom: var(--spacing-8);
+  animation: slideUp 0.6s var(--ease-out-cubic);
+}
+
+.employee-salary-slips-page-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-3);
+  line-height: var(--line-height-tight);
+}
+
+.employee-salary-slips-page-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 600px;
+}
+
+.employee-salary-slips-page-content {
+  animation: slideUp 0.6s var(--ease-out-cubic) 0.1s both;
+}
+
+.employee-salary-slips-coming-soon {
+  text-align: center;
+  padding: var(--spacing-16) var(--spacing-6);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.employee-salary-slips-coming-soon-icon {
+  margin: 0 auto var(--spacing-6);
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+
+.employee-salary-slips-coming-soon h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.employee-salary-slips-coming-soon p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-8) 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.employee-salary-slips-feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-4);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.employee-salary-slips-feature-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.employee-salary-slips-feature-item svg {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .employee-salary-slips-page-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .employee-salary-slips-page-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .employee-salary-slips-coming-soon {
+    padding: var(--spacing-12) var(--spacing-4);
+  }
+  
+  .employee-salary-slips-feature-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .employee-salary-slips-coming-soon {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .employee-salary-slips-feature-item {
+  background: var(--color-bg-primary);
+  border-color: var(--color-border);
+}

@@ -15,12 +15,14 @@ import EmployeeDashboard from '@/pages/Employee/Dashboard/Dashboard';
 
 // Admin pages
 import Employees from '@/pages/Admin/Employees';
-import SalarySlips from '@/pages/Admin/SalarySlips';
-import Reports from '@/pages/Admin/Reports';
-import Settings from '@/pages/Admin/Settings';
+import AdminSalarySlips from '@/pages/Admin/SalarySlips';
+import AdminReports from '@/pages/Admin/Reports';
+import AdminSettings from '@/pages/Admin/Settings';
 
-// Placeholder components for future routes
-const Profile = () => <div>Profile - Coming Soon</div>;
+// Employee pages
+import EmployeeProfile from '@/pages/Employee/Profile'
+import EmployeeSalarySlips from '@/pages/Employee/SalarySlips'
+import EmployeeSettings from '@/pages/Employee/Settings'
 
 // Dashboard redirect component
 const DashboardRedirect = () => {
@@ -70,7 +72,7 @@ function App() {
         path="/admin/salary-slips" 
         element={
           <ProtectedRoute requiredRole="admin">
-            <SalarySlips />
+            <AdminSalarySlips />
           </ProtectedRoute>
         } 
       />
@@ -79,7 +81,7 @@ function App() {
         path="/admin/reports" 
         element={
           <ProtectedRoute requiredRole="admin">
-            <Reports />
+            <AdminReports />
           </ProtectedRoute>
         } 
       />
@@ -88,7 +90,7 @@ function App() {
         path="/admin/settings" 
         element={
           <ProtectedRoute requiredRole="admin">
-            <Settings />
+            <AdminSettings />
           </ProtectedRoute>
         } 
       />
@@ -102,13 +104,30 @@ function App() {
           </ProtectedRoute>
         } 
       />
-      
-      {/* Profile Route - accessible to all authenticated users */}
+
       <Route 
-        path={ROUTES.PROFILE} 
+        path="/employee/profile" 
         element={
-          <ProtectedRoute>
-            <Profile />
+          <ProtectedRoute requiredRole="employee">
+            <EmployeeProfile />
+          </ProtectedRoute>
+        } 
+      />
+      
+      <Route 
+        path="/employee/salary-slips" 
+        element={
+          <ProtectedRoute requiredRole="employee">
+            <EmployeeSalarySlips />
+          </ProtectedRoute>
+        } 
+      />
+
+      <Route 
+        path="/employee/settings" 
+        element={
+          <ProtectedRoute requiredRole="employee">
+            <EmployeeSettings/>
           </ProtectedRoute>
         } 
       />

@@ -1,0 +1,112 @@
+/* Admin Header */
+.employee-layout-header {
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 var(--spacing-10);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.employee-layout-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.employee-layout-mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+.employee-layout-mobile-menu-btn:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.employee-layout-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.employee-layout-breadcrumb-item {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.employee-layout-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.employee-layout-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.employee-layout-header-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.employee-layout-header-btn:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 1024px) {
+  .employee-layout-header {
+    padding: 0 var(--spacing-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-layout-mobile-menu-btn {
+    display: flex;
+  }
+  .employee-layout-header {
+    padding: 0 var(--spacing-3);
+    height: 60px;
+  }
+  .employee-layout-header-actions {
+    gap: var(--spacing-1);
+  }
+  .employee-layout-header-btn {
+    padding: var(--spacing-1);
+  }
+}
+
+@media (max-width: 480px) {
+  .employee-layout-header {
+    padding: 0 var(--spacing-2);
+  }
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .employee-layout-header {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}

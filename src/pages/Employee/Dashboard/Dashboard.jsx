@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { userAPI } from '@/services/api';
-import Layout from '@/components/layout/Layout/Layout';
+import EmployeeLayout from '@/components/employee/EmployeeLayout';
 import './Dashboard.css';
 
 const EmployeeDashboard = () => {
@@ -34,19 +34,19 @@ const EmployeeDashboard = () => {
 
   if (loading) {
     return (
-      <Layout>
+      <EmployeeLayout>
         <div className="employee-dashboard loading">
           <div className="loading-spinner">
             <div className="spinner"></div>
             <p>Loading dashboard...</p>
           </div>
         </div>
-      </Layout>
+      </EmployeeLayout>
     );
   }
 
   return (
-    <Layout>
+    <EmployeeLayout>
       <div className="employee-dashboard">
         {/* Dashboard Header */}
         <div className="dashboard-header">
@@ -253,7 +253,7 @@ const EmployeeDashboard = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </EmployeeLayout>
   );
 };
 

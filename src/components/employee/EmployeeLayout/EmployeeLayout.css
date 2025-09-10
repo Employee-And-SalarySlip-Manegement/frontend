@@ -1,0 +1,116 @@
+/* Admin Layout Styles */
+.employee-layout-component {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-bg-secondary);
+}
+
+/* Main Content Area */
+.employee-layout-main {
+  flex: 1;
+  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left var(--transition-normal);
+  min-height: 100vh;
+}
+
+.employee-layout-main.sidebar-collapsed {
+  margin-left: 80px;
+}
+
+.employee-layout-main.mobile {
+  margin-left: 0;
+}
+
+/* Page Content */
+.employee-layout-content {
+  flex: 1;
+  padding: var(--spacing-6);
+  overflow-y: auto;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.02) 0%, transparent 50%),
+    linear-gradient(180deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+}
+
+/* Mobile Overlay */
+.employee-layout-mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .employee-layout-main {
+    margin-left: 260px;
+  }
+  
+  .employee-layout-main.sidebar-collapsed {
+    margin-left: 70px;
+  }
+  
+  .employee-layout-content {
+    padding: var(--spacing-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-layout-main {
+    margin-left: 0;
+  }
+  
+  .employee-layout-main.sidebar-collapsed {
+    margin-left: 0;
+  }
+  
+  .employee-layout-mobile-overlay {
+    display: block;
+  }
+  
+  .employee-layout-content {
+    padding: var(--spacing-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .employee-layout-content {
+    padding: var(--spacing-2);
+  }
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .employee-layout-component {
+  background: var(--color-bg-primary);
+}
+
+[data-theme='dark'] .employee-layout-content {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+}
+
+/* Scrollbar Styling */
+.employee-layout-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.employee-layout-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.employee-layout-content::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+.employee-layout-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-medium);
+}
