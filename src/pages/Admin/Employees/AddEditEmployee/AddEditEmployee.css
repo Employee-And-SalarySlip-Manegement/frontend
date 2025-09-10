@@ -1,0 +1,31 @@
+/* Add/Edit Employee Styles */
+.addedit-employee-page { min-height: calc(100vh - 70px); }
+.addedit-employee-header { margin-bottom: var(--spacing-8); }
+.addedit-employee-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); }
+.addedit-employee-subtitle { color: var(--color-text-secondary); }
+
+.addedit-employee-card {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-6);
+}
+
+.employee-form { display: grid; gap: var(--spacing-4); }
+.form-row { display: grid; gap: var(--spacing-2); }
+.form-row.checkbox { grid-template-columns: 1fr auto; align-items: center; }
+.form-row label { font-weight: var(--font-weight-medium); }
+.form-row input, .form-row select {
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 0 var(--spacing-3);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.form-actions { display: flex; gap: var(--spacing-3); justify-content: flex-end; margin-top: var(--spacing-4); }
+.form-error { color: var(--color-danger); }
+
+

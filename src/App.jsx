@@ -14,7 +14,8 @@ import AdminDashboard from '@/pages/Admin/Dashboard/Dashboard';
 import EmployeeDashboard from '@/pages/Employee/Dashboard/Dashboard';
 
 // Admin pages
-import Employees from '@/pages/Admin/Employees';
+import Employees from '@/pages/Admin/Employees/Employees';
+import AddEditEmployee from '@/pages/Admin/Employees/AddEditEmployee';
 import AdminSalarySlips from '@/pages/Admin/SalarySlips';
 import AdminReports from '@/pages/Admin/Reports';
 import AdminSettings from '@/pages/Admin/Settings';
@@ -64,6 +65,22 @@ function App() {
         element={
           <ProtectedRoute requiredRole="admin">
             <Employees />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/employees/new" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <AddEditEmployee />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/employees/:id/edit" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <AddEditEmployee />
           </ProtectedRoute>
         } 
       />
