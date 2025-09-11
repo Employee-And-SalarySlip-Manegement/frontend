@@ -1,0 +1,39 @@
+/* Salary Slips Page Styles */
+.admin-salary-slips-page {
+  min-height: calc(100vh - 70px);
+}
+
+.admin-salary-slips-page-header {
+  margin-bottom: var(--spacing-8);
+  animation: slideUp 0.6s var(--ease-out-cubic);
+}
+
+.admin-salary-slips-page-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-3);
+  line-height: var(--line-height-tight);
+}
+
+.admin-salary-slips-page-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 600px;
+}
+
+.admin-salary-slips-page-content {
+  animation: slideUp 0.6s var(--ease-out-cubic) 0.1s both;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-salary-slips-page-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .admin-salary-slips-page-subtitle {
+    font-size: var(--font-size-base);
+  }
+}

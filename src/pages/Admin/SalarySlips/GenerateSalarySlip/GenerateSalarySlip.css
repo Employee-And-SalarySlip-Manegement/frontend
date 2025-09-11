@@ -1,0 +1,22 @@
+/* Generate Salary Slip Page Styles */
+.admin-generate-salary-slip-page {
+  min-height: calc(100vh - 70px);
+}
+
+.admin-generate-salary-slip-page-header {
+  margin-bottom: var(--spacing-8);
+}
+
+.admin-generate-salary-slip-page-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-3);
+  line-height: var(--line-height-tight);
+}
+
+.admin-generate-salary-slip-page-content {
+  animation: slideUp 0.6s var(--ease-out-cubic) 0.1s both;
+}
+
+

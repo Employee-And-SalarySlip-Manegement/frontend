@@ -16,7 +16,9 @@ import EmployeeDashboard from '@/pages/Employee/Dashboard/Dashboard';
 // Admin pages
 import Employees from '@/pages/Admin/Employees/Employees';
 import AddEditEmployee from '@/pages/Admin/Employees/AddEditEmployee';
-import AdminSalarySlips from '@/pages/Admin/SalarySlips';
+import AdminSalarySlips from '@/pages/Admin/SalarySlips/Employees';
+import ViewSalarySlip from '@/pages/Admin/SalarySlips/ViewSalarySlip';
+import GenerateSalarySlip from '@/pages/Admin/SalarySlips/GenerateSalarySlip';
 import AdminReports from '@/pages/Admin/Reports';
 import AdminSettings from '@/pages/Admin/Settings';
 
@@ -90,6 +92,22 @@ function App() {
         element={
           <ProtectedRoute requiredRole="admin">
             <AdminSalarySlips />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/salary-slips/view/:id" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <ViewSalarySlip />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/admin/salary-slips/generate" 
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <GenerateSalarySlip />
           </ProtectedRoute>
         } 
       />

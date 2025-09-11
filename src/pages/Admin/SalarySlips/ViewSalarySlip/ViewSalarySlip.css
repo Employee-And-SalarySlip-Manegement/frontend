@@ -1,0 +1,23 @@
+/* View Salary Slip Page Styles */
+.admin-view-salary-slip-page {}
+
+.admin-view-salary-slip-page-header {
+  margin-bottom: var(--spacing-8);
+}
+
+.admin-view-salary-slip-page-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-3);
+  line-height: var(--line-height-tight);
+}
+
+.admin-view-salary-slip-page-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}
+
+.admin-view-salary-slip-page-content {}
+
+
