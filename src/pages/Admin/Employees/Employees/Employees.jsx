@@ -6,7 +6,7 @@ import { useApi } from '@/hooks/useApi';
 import EmployeesToolbar from '@/components/admin/Employees/EmployeesToolbar';
 import EmployeesTable from '@/components/admin/Employees/EmployeesTable';
 import EmployeesPagination from '@/components/admin/Employees/EmployeesPagination';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Employees.css';
 
 const Employees = () => {
@@ -17,6 +17,9 @@ const Employees = () => {
   const [limit, setLimit] = useState(PAGINATION.DEFAULT_LIMIT);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const deepLinkedSelectedId = searchParams.get('selectedId');
 
   const params = useMemo(() => ({
     page,
@@ -101,7 +104,7 @@ const Employees = () => {
             onLimitChange={onLimitChange}
           />
 
-          <EmployeesTable users={users} loading={loading} error={error} onEdit={handleEdit} onDelete={handleDelete} />
+          <EmployeesTable users={users} loading={loading} error={error} onEdit={handleEdit} onDelete={handleDelete} selectedId={deepLinkedSelectedId} />
 
           <EmployeesPagination
             pagination={pagination}

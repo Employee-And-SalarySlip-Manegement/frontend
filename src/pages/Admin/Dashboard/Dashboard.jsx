@@ -168,7 +168,7 @@ const AdminDashboard = () => {
                   </div>
                   <div className="admin-dashboard-employee-actions">
                     <Link 
-                      to={`/admin/employees/${employee._id}`} 
+                      to={`/admin/employees?selectedId=${employee._id}`} 
                       className="btn btn-ghost btn-sm"
                     >
                       View

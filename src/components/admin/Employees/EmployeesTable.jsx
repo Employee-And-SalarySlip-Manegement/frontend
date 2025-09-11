@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const EmployeesTable = ({ users, loading, error, onEdit, onDelete }) => {
+const EmployeesTable = ({ users, loading, error, onEdit, onDelete, selectedId: controlledSelectedId }) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const handleRowClick = (userId) => {
     setSelectedId(userId === selectedId ? null : userId);
   };
+
+  useEffect(() => {
+    if (controlledSelectedId) {
+      setSelectedId(controlledSelectedId);
+    }
+  }, [controlledSelectedId]);
 
   return (
     <div className="admin-employees-table-wrapper">
