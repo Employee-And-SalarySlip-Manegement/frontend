@@ -1,14 +1,14 @@
-/* Salary Slips Page Styles */
-.admin-salary-slips-page {
+/* Employees Page Styles */
+.admin-employees-page {
   min-height: calc(100vh - 70px);
 }
 
-.admin-salary-slips-page-header {
+.admin-employees-page-header {
   margin-bottom: var(--spacing-8);
   animation: slideUp 0.6s var(--ease-out-cubic);
 }
 
-.admin-salary-slips-page-title {
+.admin-employees-page-title {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
@@ -16,24 +16,284 @@
   line-height: var(--line-height-tight);
 }
 
-.admin-salary-slips-page-subtitle {
+.admin-employees-page-subtitle {
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
   max-width: 600px;
 }
 
-.admin-salary-slips-page-content {
+.admin-employees-page-content {
   animation: slideUp 0.6s var(--ease-out-cubic) 0.1s both;
+}
+
+/* Toolbar */
+.admin-employees-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-5);
+}
+
+.admin-employees-toolbar-left,
+.admin-employees-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.admin-employees-search {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: 0 var(--spacing-3);
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-secondary);
+}
+
+.admin-employees-search-icon {
+  color: var(--color-text-muted);
+}
+
+.admin-employees-search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  width: 260px;
+}
+
+.admin-employees-select {
+  height: 38px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  padding: 0 var(--spacing-3);
+}
+
+/* Table */
+.admin-employees-table-wrapper {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-employees-table-scroll {
+  width: 80vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Expand table container when sidebar is collapsed */
+.admin-layout-main.sidebar-collapsed .admin-employees-table-scroll {
+  width: 90vw;
+}
+
+/* On mobile, take full width */
+@media (max-width: 768px) {
+  .admin-employees-table-scroll { width: 100%; }
+}
+
+.admin-employees-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.admin-employees-table thead th {
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: var(--spacing-4) var(--spacing-5);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+}
+
+.admin-employees-table tbody td {
+  padding: var(--spacing-4) var(--spacing-5);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+.admin-employees-table tbody tr:hover {
+  background: var(--color-bg-secondary);
+}
+
+.admin-employees-table tbody tr.row-selected {
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.admin-employees-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.admin-employees-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.admin-employees-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-employees-user-name {
+  font-weight: var(--font-weight-medium);
+}
+
+.admin-employees-user-id {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 var(--spacing-2);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid transparent;
+}
+
+.badge-employee { background: var(--color-bg-secondary); color: var(--color-text-primary); border-color: var(--color-border); }
+.badge-admin { background: var(--color-primary-soft); color: var(--color-primary); border-color: var(--color-primary); }
+.badge-success { background: var(--color-success-soft); color: var(--color-success); border-color: var(--color-success); }
+.badge-muted { background: var(--color-bg-secondary); color: var(--color-text-secondary); border-color: var(--color-border); }
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+}
+.dot-success { background: var(--color-success); }
+.dot-muted { background: var(--color-text-muted); }
+
+.muted { color: var(--color-text-secondary); }
+
+.admin-employees-state {
+  padding: var(--spacing-10);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+.admin-employees-state.error { color: var(--color-danger); }
+.admin-employees-state.empty { color: var(--color-text-secondary); }
+
+/* Pagination */
+.admin-employees-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+}
+
+.pagination-btn {
+  height: 34px;
+  padding: 0 var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: var(--color-text-secondary);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 var(--spacing-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  font-weight: var(--font-weight-medium);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-link {
+  background: transparent;
+  color: var(--color-primary);
+  border: none;
+  height: auto;
+  padding: 0;
+}
+
+.icon-btn {
+  height: 30px;
+  width: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+  margin-right: var(--spacing-2);
+}
+
+.admin-employees-actions {
+  display: flex;
+  align-items: center;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .admin-salary-slips-page-title {
+  .admin-employees-page-title {
     font-size: var(--font-size-2xl);
   }
   
-  .admin-salary-slips-page-subtitle {
+  .admin-employees-page-subtitle {
     font-size: var(--font-size-base);
   }
+  
+  .admin-employees-search-input { width: 160px; }
+  .admin-employees-toolbar { flex-direction: column; align-items: stretch; }
+  .admin-employees-toolbar-right { flex-wrap: wrap; }
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .admin-employees-toolbar,
+[data-theme='dark'] .admin-employees-table-wrapper {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border);
 }
