@@ -1,22 +1,95 @@
-/* Generate Salary Slip Page Styles */
-.admin-generate-salary-slip-page {
-  min-height: calc(100vh - 70px);
+.admin-salary-slips-upload-section {
+  margin-bottom: var(--spacing-4);
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-secondary);
 }
 
-.admin-generate-salary-slip-page-header {
-  margin-bottom: var(--spacing-8);
-}
-
-.admin-generate-salary-slip-page-title {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
+.admin-salary-slips-upload-section h2 {
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-3);
-  line-height: var(--line-height-tight);
 }
 
-.admin-generate-salary-slip-page-content {
-  animation: slideUp 0.6s var(--ease-out-cubic) 0.1s both;
+.drop-zone {
+  border: 2px dashed var(--color-border-medium);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-8) var(--spacing-4);
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: var(--spacing-4);
+  transition: all var(--transition-fast);
+  background-color: var(--color-bg-primary);
+}
+
+.drop-zone.dragging {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
+}
+
+.drop-zone p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+}
+
+.drop-zone p:first-child {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.admin-salary-slips-upload-section .btn {
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--spacing-2-5) var(--spacing-3);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  width: 100%;
+}
+
+.admin-salary-slips-upload-section .btn:disabled {
+  background-color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.admin-salary-slips-log-section {
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-secondary);
+}
+
+.admin-salary-slips-log-section h2 {
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-3);
+}
+
+.admin-salary-slips-log-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spacing-3);
+}
+
+.admin-salary-slips-log-table th,
+.admin-salary-slips-log-table td {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-2);
+  text-align: left;
+}
+
+.admin-salary-slips-log-table th {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+}
+
+.admin-salary-slips-log-table tbody tr:nth-child(even) {
+  background-color: var(--color-bg-primary);
+}
+
+.admin-salary-slips-log-table tbody tr:hover {
+  background-color: var(--color-bg-tertiary);
 }
 
 

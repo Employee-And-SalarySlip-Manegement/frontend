@@ -239,6 +239,9 @@ export const adminAPI = {
   
   // Dashboard stats
   getDashboardStats: () => apiService.get('/admin/stats'),
+
+  // Salary Slip management
+  uploadSalarySlip: (formData, onProgress) => apiService.upload('/admin/salary-slips/upload', formData, onProgress),
 };
 
 // User/Employee API methods  
