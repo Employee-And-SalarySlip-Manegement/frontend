@@ -89,8 +89,20 @@
 }
 
 .admin-employees-table-scroll {
-  width: 100%;
-  overflow: auto;
+  width: 80vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Expand table container when sidebar is collapsed */
+.admin-layout-main.sidebar-collapsed .admin-employees-table-scroll {
+  width: 90vw;
+}
+
+/* On mobile, take full width */
+@media (max-width: 768px) {
+  .admin-employees-table-scroll { width: 100%; }
 }
 
 .admin-employees-table {
@@ -120,6 +132,10 @@
 
 .admin-employees-table tbody tr:hover {
   background: var(--color-bg-secondary);
+}
+
+.admin-employees-table tbody tr.row-selected {
+  background: rgba(59, 130, 246, 0.12);
 }
 
 .admin-employees-user {

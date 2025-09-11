@@ -17,8 +17,12 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch dashboard stats
+  // Fetch dashboard stats (guard against React 18 StrictMode double-invoke in dev)
+  let hasFetchedStats = false;
   useEffect(() => {
+    if (hasFetchedStats) return;
+    hasFetchedStats = true;
+
     const fetchStats = async () => {
       try {
         setLoading(true);

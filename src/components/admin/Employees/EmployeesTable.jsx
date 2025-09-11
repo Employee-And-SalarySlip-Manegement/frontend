@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const EmployeesTable = ({ users, loading, error, onEdit, onViewSlips }) => {
+const EmployeesTable = ({ users, loading, error, onEdit, onDelete }) => {
+  const [selectedId, setSelectedId] = useState(null);
+
+  const handleRowClick = (userId) => {
+    setSelectedId(userId === selectedId ? null : userId);
+  };
+
   return (
     <div className="admin-employees-table-wrapper">
       {loading ? (
@@ -14,19 +20,32 @@ const EmployeesTable = ({ users, loading, error, onEdit, onViewSlips }) => {
           <table className="admin-employees-table" role="table">
             <thead>
               <tr>
+                <th>Employee ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Role</th>
+                <th>DOJ</th>
+                <th>Address</th>
+                <th>Bank A/C</th>
+                <th>PF No</th>
+                <th>PAN</th>
+                <th>Aadhar</th>
                 <th>Status</th>
-                <th>Email Verified</th>
-                <th>Last Login</th>
                 <th>Created</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {users.map((u) => (
-                <tr key={u._id}>
+                <tr 
+                  key={u._id}
+                  className={selectedId === u._id ? 'row-selected' : ''}
+                  onClick={() => handleRowClick(u._id)}
+                >
+                  <td>
+                    <div className="admin-employees-emp-id">
+                      <span className="badge badge-primary">{u.empId || '—'}</span>
+                    </div>
+                  </td>
                   <td>
                     <div className="admin-employees-user">
                       <div className="admin-employees-avatar" aria-hidden="true">{(u.name || u.email || '?').charAt(0).toUpperCase()}</div>
@@ -37,24 +56,23 @@ const EmployeesTable = ({ users, loading, error, onEdit, onViewSlips }) => {
                     </div>
                   </td>
                   <td className="muted">{u.email}</td>
-                  <td>
-                    <span className={`badge ${u.role === 'admin' ? 'badge-admin' : 'badge-employee'}`}>{u.role}</span>
-                  </td>
+                  <td className="muted">{u.doj ? new Date(u.doj).toLocaleDateString() : '—'}</td>
+                  <td className="muted">{u.address || '—'}</td>
+                  <td className="muted">{u.bankAccountNo || '—'}</td>
+                  <td className="muted">{u.pfNo || '—'}</td>
+                  <td className="muted">{u.pan || '—'}</td>
+                  <td className="muted">{u.aadhar || '—'}</td>
                   <td>
                     <span className={`badge ${u.isActive ? 'badge-success' : 'badge-muted'}`}>{u.isActive ? 'Active' : 'Inactive'}</span>
                   </td>
-                  <td>
-                    <span className={`dot ${u.emailVerified ? 'dot-success' : 'dot-muted'}`} title={u.emailVerified ? 'Verified' : 'Not verified'} />
-                  </td>
-                  <td className="muted">{u.lastLogin ? new Date(u.lastLogin).toLocaleString() : '—'}</td>
                   <td className="muted">{u.createdAt ? new Date(u.createdAt).toLocaleDateString() : '—'}</td>
                   <td>
                     <div className="admin-employees-actions">
                       <button type="button" className="icon-btn" title="Edit" onClick={() => onEdit?.(u)}>
                         ✏️
                       </button>
-                      <button type="button" className="btn btn-link" onClick={() => onViewSlips?.(u)}>
-                        View Slips
+                      <button type="button" className="icon-btn" title="Delete" onClick={() => onDelete?.(u)}>
+                        🗑️
                       </button>
                     </div>
                   </td>

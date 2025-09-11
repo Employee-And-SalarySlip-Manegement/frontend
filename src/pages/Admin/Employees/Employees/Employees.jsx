@@ -26,7 +26,7 @@ const Employees = () => {
     isActive: status === '' ? undefined : status === 'active' ? 'true' : 'false',
   }), [page, limit, search, status]);
 
-  const { data, loading, error } = useApi(
+  const { data, loading, error, refetch } = useApi(
     () => adminAPI.getAllEmployees(params),
     { immediate: true, dependencies: [params] }
   );
@@ -70,8 +70,16 @@ const Employees = () => {
     navigate(`/admin/employees/${user._id}/edit`);
   };
 
-  const handleViewSlips = (user) => {
-    navigate(`/admin/salary-slips?userId=${user._id}`);
+  const handleDelete = async (user) => {
+    if (!user?._id) return;
+    const confirmed = window.confirm(`Deactivate employee "${user.name || user.email}"?`);
+    if (!confirmed) return;
+    try {
+      await adminAPI.deleteEmployee(user._id);
+      await refetch();
+    } catch (err) {
+      // error toasts handled globally
+    }
   };
 
   return (
@@ -93,7 +101,7 @@ const Employees = () => {
             onLimitChange={onLimitChange}
           />
 
-          <EmployeesTable users={users} loading={loading} error={error} onEdit={handleEdit} onViewSlips={handleViewSlips} />
+          <EmployeesTable users={users} loading={loading} error={error} onEdit={handleEdit} onDelete={handleDelete} />
 
           <EmployeesPagination
             pagination={pagination}

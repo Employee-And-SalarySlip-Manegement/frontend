@@ -14,8 +14,13 @@ const AddEditEmployee = () => {
     name: '',
     email: '',
     password: '',
-    role: 'employee',
     isActive: true,
+    doj: '',
+    address: '',
+    bankAccountNo: '',
+    pfNo: '',
+    pan: '',
+    aadhar: '',
   });
 
   const { data: employeeData, loading: loadingEmployee } = useApi(
@@ -30,9 +35,14 @@ const AddEditEmployee = () => {
         ...prev,
         name: u.name || '',
         email: u.email || '',
-        role: u.role || 'employee',
         isActive: typeof u.isActive === 'boolean' ? u.isActive : true,
         password: '',
+        doj: u.doj ? new Date(u.doj).toISOString().slice(0, 10) : '',
+        address: u.address || '',
+        bankAccountNo: u.bankAccountNo || '',
+        pfNo: u.pfNo || '',
+        pan: u.pan || '',
+        aadhar: u.aadhar || '',
       }));
     }
   }, [isEdit, employeeData]);
@@ -57,8 +67,13 @@ const AddEditEmployee = () => {
         const payload = {
           name: form.name.trim(),
           email: form.email.trim().toLowerCase(),
-          role: form.role,
           isActive: form.isActive,
+          doj: form.doj || null,
+          address: form.address.trim(),
+          bankAccountNo: form.bankAccountNo.trim(),
+          pfNo: form.pfNo.trim(),
+          pan: form.pan.trim(),
+          aadhar: form.aadhar.trim(),
         };
         await adminAPI.updateEmployee(id, payload);
       } else {
@@ -66,7 +81,12 @@ const AddEditEmployee = () => {
           name: form.name.trim(),
           email: form.email.trim().toLowerCase(),
           password: form.password,
-          role: form.role,
+          doj: form.doj || null,
+          address: form.address.trim(),
+          bankAccountNo: form.bankAccountNo.trim(),
+          pfNo: form.pfNo.trim(),
+          pan: form.pan.trim(),
+          aadhar: form.aadhar.trim(),
         };
         await adminAPI.createEmployee(payload);
       }
@@ -82,6 +102,12 @@ const AddEditEmployee = () => {
   return (
     <AdminLayout>
       <div className="addedit-employee-page">
+      <button type="button" className="btn btn-ghost" onClick={() => navigate(-1)}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back
+          </button>
         <div className="addedit-employee-header">
           <h1 className="addedit-employee-title">{isEdit ? 'Edit Employee' : 'Add Employee'}</h1>
           <p className="addedit-employee-subtitle">{isEdit ? 'Update user details' : 'Create a new employee account'}</p>
@@ -94,51 +120,119 @@ const AddEditEmployee = () => {
             <form onSubmit={handleSubmit} className="employee-form">
               {error && <div className="form-error" role="alert">{error}</div>}
 
-              <div className="form-row">
-                <label htmlFor="name">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-row">
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              {!isEdit && (
+              <div className="form-grid-2">
                 <div className="form-row">
-                  <label htmlFor="password">Temporary Password</label>
+                  <label htmlFor="name" className="required">Name</label>
                   <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={form.password}
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={form.name}
                     onChange={handleChange}
-                    minLength={6}
                     required
                   />
                 </div>
-              )}
+
+                <div className="form-row">
+                  <label htmlFor="email" className="required">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                {!isEdit && (
+                  <div className="form-row">
+                    <label htmlFor="password" className="required">Temporary Password</label>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      value={form.password}
+                      onChange={handleChange}
+                      minLength={6}
+                      required
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="form-grid">
+                <div className="form-row">
+                  <label htmlFor="doj">Date of Joining</label>
+                  <input
+                    id="doj"
+                    name="doj"
+                    type="date"
+                    value={form.doj}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-row">
+                  <label htmlFor="bankAccountNo">Bank A/C No</label>
+                  <input
+                    id="bankAccountNo"
+                    name="bankAccountNo"
+                    type="text"
+                    value={form.bankAccountNo}
+                    onChange={handleChange}
+                    inputMode="numeric"
+                  />
+                </div>
+
+                <div className="form-row">
+                  <label htmlFor="pfNo">PF No</label>
+                  <input
+                    id="pfNo"
+                    name="pfNo"
+                    type="text"
+                    value={form.pfNo}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-row">
+                  <label htmlFor="pan">PAN</label>
+                  <input
+                    id="pan"
+                    name="pan"
+                    type="text"
+                    value={form.pan}
+                    onChange={(e) => handleChange({ target: { ...e.target, value: e.target.value.toUpperCase() } })}
+                    placeholder="ABCDE1234F"
+                    pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
+                  />
+                </div>
+
+                <div className="form-row">
+                  <label htmlFor="aadhar">Aadhar</label>
+                  <input
+                    id="aadhar"
+                    name="aadhar"
+                    type="text"
+                    value={form.aadhar}
+                    onChange={handleChange}
+                    inputMode="numeric"
+                    pattern="\\d{12}"
+                    placeholder="12 digit number"
+                  />
+                </div>
+              </div>
 
               <div className="form-row">
-                <label htmlFor="role">Role</label>
-                <select id="role" name="role" value={form.role} onChange={handleChange}>
-                  <option value="employee">Employee</option>
-                  <option value="admin">Admin</option>
-                </select>
+                <label htmlFor="address">Address</label>
+                <textarea
+                  id="address"
+                  name="address"
+                  value={form.address}
+                  onChange={handleChange}
+                  rows={3}
+                />
               </div>
 
               {isEdit && (
