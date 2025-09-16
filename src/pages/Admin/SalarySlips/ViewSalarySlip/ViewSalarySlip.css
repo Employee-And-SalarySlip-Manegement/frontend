@@ -20,4 +20,140 @@
 
 .admin-view-salary-slip-page-content {}
 
+.admin-view-salary-slip-month-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+.admin-view-salary-slip-month-selector label {
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.admin-view-salary-slip-month-input {
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-alt);
+  cursor: pointer;
+}
+
+.admin-view-salary-slip-month-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+}
+
+.salary-slip-details {
+  background-color: var(--color-background-card);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-8);
+  box-shadow: var(--shadow-md);
+}
+
+.salary-slip-details h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-6);
+  text-align: center;
+}
+
+.salary-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-8);
+}
+
+@media (min-width: 768px) {
+  .salary-details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.salary-details-card {
+  background-color: var(--color-background-body);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-6);
+  border: 1px solid var(--color-border);
+}
+
+.salary-details-card h3 {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-3);
+}
+
+.salary-details-card p {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.salary-details-card p strong {
+  color: var(--color-text-primary);
+}
+
+.net-salary-section {
+  text-align: center;
+  margin-top: var(--spacing-8);
+  padding-top: var(--spacing-6);
+  border-top: 2px solid var(--color-primary);
+}
+
+.net-salary-section h3 {
+  font-size: var(--font-size-3xl);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.admin-salary-slips-coming-soon {
+  text-align: center;
+  padding: var(--spacing-10);
+  background-color: var(--color-background-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-salary-slips-coming-soon h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.admin-salary-slips-coming-soon p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-6);
+}
+
+.error-message {
+  color: var(--color-danger);
+  text-align: center;
+  font-size: var(--font-size-lg);
+  margin-top: var(--spacing-6);
+}
+
+.btn {
+  /* background-color: var(--color-primary); */
+  color: var(--color-white);
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+}
+
 

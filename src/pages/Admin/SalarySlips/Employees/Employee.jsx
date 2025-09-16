@@ -59,7 +59,7 @@ const Employee = () => {
   };
 
   const handleGenerateAll = () => navigate(`/admin/salary-slips/generate`);
-  const handleView = (user) => navigate(`/admin/salary-slips/view/${user._id}`);
+  const handleView = (user) => navigate(`/admin/salary-slips/view/${user.empId}`);
 
   return (
     <AdminLayout>
