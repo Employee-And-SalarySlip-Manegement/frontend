@@ -399,37 +399,6 @@
   color: var(--color-text-tertiary);
 }
 
-/* Activity Placeholder */
-.activity-placeholder {
-  text-align: center;
-  padding: var(--spacing-8) var(--spacing-4);
-  background: var(--color-bg-primary);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
-}
-
-.placeholder-icon {
-  margin: 0 auto var(--spacing-4);
-  color: var(--color-text-tertiary);
-}
-
-.activity-placeholder h3 {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin: 0 0 var(--spacing-2) 0;
-}
-
-.activity-placeholder p {
-  font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
-  margin: 0;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* Info Cards */
 .info-cards {
   display: grid;
@@ -573,6 +542,10 @@
 
   .dashboard-subtitle {
     font-size: var(--font-size-base);
+  }
+
+  .dashboard-header{
+    height: 22vh;
   }
 
   .header-actions {
