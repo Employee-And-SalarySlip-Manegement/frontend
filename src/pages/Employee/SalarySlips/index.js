@@ -1,1 +1,3 @@
-export { default } from './SalarySlips';
+export { default } from './view';
+
+

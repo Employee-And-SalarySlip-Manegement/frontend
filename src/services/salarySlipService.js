@@ -2,6 +2,6 @@ import apiService from './api';
 
 export const salarySlipService = {
   getSalarySlip: (employeeId, month) => {
-    return apiService.get(`/admin/salary-slips/${employeeId}?month=${month}`);
+    return apiService.get(`/common/salary-slips/${employeeId}?month=${month}`);
   },
 };
