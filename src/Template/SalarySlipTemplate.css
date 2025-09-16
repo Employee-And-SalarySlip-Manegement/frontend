@@ -1,0 +1,43 @@
+.salary-slip {
+  width: 700px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #2c3e50;
+}
+
+.salary-slip-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.salary-slip-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.salary-slip-table td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.salary-slip-table .highlight {
+  background: #ecf0f1;
+  font-weight: bold;
+}
+
+.net-salary {
+  text-align: right;
+  margin: 20px 0;
+  color: #27ae60;
+}
+
+.salary-slip-footer {
+  text-align: center;
+  font-size: 12px;
+  color: #7f8c8d;
+}
