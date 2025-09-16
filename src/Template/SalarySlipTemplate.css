@@ -182,7 +182,7 @@
 .salary-table td {
   padding: 6px 10px; /* Further reduced padding */
   border-bottom: 1px solid #f1f3f4;
-  font-size: 12px; /* Further reduced font size */
+  font-size: 13px; /* Further reduced font size */
 }
 
 .salary-table tbody tr:hover {
@@ -192,7 +192,6 @@
 .amount {
   text-align: right;
   font-weight: 500;
-  font-family: 'Courier New', monospace;
 }
 
 .total-row {
@@ -209,30 +208,35 @@
 .net-salary-section {
   margin-bottom: 15px; /* Further reduced margin */
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .net-salary-card {
-  background: linear-gradient(135deg, #27ae60, #2ecc71);
-  color: white;
+  background: #ffffff;
+  color: #2c3e50;
   padding: 10px 20px; /* Further reduced padding */
-  border-radius: 12px;
+  border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   min-width: 250px; /* Further reduced min-width */
+  border: 1px solid #e1e5e9;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .net-salary-label {
-  font-size: 14px; /* Further reduced font size */
+  font-size: 16px; /* Further reduced font size */
   font-weight: 600;
-  margin-bottom: 3px;
-  opacity: 0.9;
+  margin-bottom: 0px;
+  opacity: 1;
 }
 
 .net-salary-amount {
-  font-size: 28px; /* Further reduced font size */
-  font-weight: 700;
-  font-family: 'Courier New', monospace;
+  font-size: 16px; /* Further reduced font size */
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Footer */

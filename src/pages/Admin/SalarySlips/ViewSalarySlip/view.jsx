@@ -26,7 +26,7 @@ const ViewSalarySlip = () => {
     }
     const generatePdf = async () => {
       if (salarySlipData) {
-        const blobUrl = await generateSalarySlipPdf(salarySlipData, id);
+        const blobUrl = await generateSalarySlipPdf(salarySlipData);
         setPdfBlobUrl(blobUrl);
       }
     };

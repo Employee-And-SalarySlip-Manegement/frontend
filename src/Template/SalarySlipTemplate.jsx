@@ -1,6 +1,13 @@
 import React from 'react';
 import './SalarySlipTemplate.css';
 
+const formatMonthYear = (dateString) => {
+  if (!dateString) return "";
+  const [year, month] = dateString.split('-');
+  const date = new Date(year, month - 1);
+  return date.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+};
+
 const SalarySlipTemplate = ({ salarySlipData }) => {
   if (!salarySlipData) return null;
 
@@ -22,9 +29,9 @@ const SalarySlipTemplate = ({ salarySlipData }) => {
           <div className="logo-placeholder">LOGO</div>
         </div>
         <div className="company-details">
-          <h1 className="company-name">Your Company Name</h1>
+          <h1 className="company-name">MahaLaxmi Agencies</h1>
           <div className="company-address">
-            <p>123 Company Street, City, Country</p>
+            <p>Gokak Road, Belagavi, Karnataka 590001</p>
             <p>Email: info@company.com | Phone: +91-XXXXXXXXXX</p>
           </div>
         </div>
@@ -33,7 +40,7 @@ const SalarySlipTemplate = ({ salarySlipData }) => {
       {/* Document Title */}
       <div className="document-title">
         <h2>SALARY SLIP</h2>
-        <div className="period">For the month of {salarySlipData.month || "September 2025"}</div>
+        <div className="period">For the month of {formatMonthYear(salarySlipData.month) || "September 2025"}</div>
       </div>
 
       {/* Employee Information Section */}
@@ -57,7 +64,7 @@ const SalarySlipTemplate = ({ salarySlipData }) => {
             </div>
             <div className="info-item">
               <span className="label">Department:</span>
-              <span className="value">HR Department</span>
+              <span className="value">-</span>
             </div>
           </div>
           <div className="info-row">

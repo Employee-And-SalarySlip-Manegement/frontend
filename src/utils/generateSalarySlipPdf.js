@@ -1,11 +1,11 @@
 import html2pdf from "html2pdf.js";
 
-export const generateSalarySlipPdf = async (salarySlipData, employeeId) => {
+export const generateSalarySlipPdf = async (salarySlipData) => {
   const element = document.getElementById("salary-slip");
   if (!element) return null;
 
   const opt = {
-    filename: `${employeeId}-Salary-Slip-${salarySlipData.month || "Sep2025"}.pdf`,
+    filename: `Salary-Slip-${salarySlipData.month || "Sep2025"}.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
