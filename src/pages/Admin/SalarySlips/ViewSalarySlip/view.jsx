@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { useSalarySlip } from '@/hooks/useSalarySlip';
+import { generateSalarySlipPdf } from '@/utils/generateSalarySlipPdf';
 import './ViewSalarySlip.css';
 
 const ViewSalarySlip = () => {
@@ -15,6 +16,14 @@ const ViewSalarySlip = () => {
 
   const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
   const { salarySlipData, loading, error } = useSalarySlip(id, selectedMonth);
+  const [pdfBlobUrl, setPdfBlobUrl] = useState(null);
+
+  useEffect(() => {
+    if (salarySlipData) {
+      const blobUrl = generateSalarySlipPdf(salarySlipData, id);
+      setPdfBlobUrl(blobUrl);
+    }
+  }, [salarySlipData, id]);
 
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
@@ -40,31 +49,12 @@ const ViewSalarySlip = () => {
         <div className="admin-view-salary-slip-page-content">
           {loading && <p>Loading salary slip...</p>}
           {error && <p className="error-message">Error: {error}</p>}
-          {salarySlipData && (
-            <div className="salary-slip-details">
-              <h2>Salary Slip for {salarySlipData.month}</h2>
-              <div className="salary-details-grid">
-                <div className="salary-details-card">
-                  <h3>Earnings</h3>
-                  {salarySlipData.earnings?.map((item, index) => (
-                    <p key={index}>{item.name}: ₹{item.amount}</p>
-                  ))}
-                  <p><strong>Gross Salary: ₹{salarySlipData.grossSalary}</strong></p>
-                </div>
-                <div className="salary-details-card">
-                  <h3>Deductions</h3>
-                  {salarySlipData.deductions?.map((item, index) => (
-                    <p key={index}>{item.name}: ₹{item.amount}</p>
-                  ))}
-                  <p><strong>Total Deductions: ₹{salarySlipData.totalDeductions}</strong></p>
-                </div>
-              </div>
-              <div className="net-salary-section">
-                <h3>Net Salary: ₹{salarySlipData.netSalary}</h3>
-              </div>
+          {pdfBlobUrl && (
+            <div className="pdf-viewer-container">
+              <iframe src={pdfBlobUrl} width="100%" height="600px" title="Salary Slip PDF"></iframe>
             </div>
           )}
-          {!loading && !salarySlipData && !error && (
+          {!loading && !pdfBlobUrl && !error && (
             <div className="admin-salary-slips-coming-soon">
               <h2>View Salary Slip</h2>
               <p>Select a month to view salary slip details.</p>

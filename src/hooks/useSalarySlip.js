@@ -14,7 +14,7 @@ export const useSalarySlip = (employeeId, month) => {
     setSalarySlipData(null);
     try {
       const response = await salarySlipService.getSalarySlip(employeeId, month);
-      console.log('response', response.data);
+      // console.log('response', response.data);
 
       const rawData = response.data.data;
 
