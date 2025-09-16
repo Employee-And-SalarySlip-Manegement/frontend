@@ -1,174 +1,158 @@
-/* View Salary Slip Page Styles */
-.admin-view-salary-slip-page {}
-
-.admin-view-salary-slip-page-header {
-  margin-bottom: var(--spacing-8);
+/* Container */
+.vss-container {
+  /* max-width: 1100px; */
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-.admin-view-salary-slip-page-title {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-3);
-  line-height: var(--line-height-tight);
-}
-
-.admin-view-salary-slip-page-subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-}
-
-.admin-view-salary-slip-page-content {}
-
-.admin-view-salary-slip-month-selector {
+/* Header */
+.vss-header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-4);
-  margin-top: var(--spacing-6);
-  margin-bottom: var(--spacing-6);
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
-.admin-view-salary-slip-month-selector label {
-  font-size: var(--font-size-md);
+.vss-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s;
+}
+
+.vss-back-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+.vss-title {
+  font-size: 1.8rem;
+  font-weight: 700;
   color: var(--color-text-primary);
-  font-weight: var(--font-weight-medium);
 }
 
-.admin-view-salary-slip-month-input {
-  padding: var(--spacing-3) var(--spacing-4);
+.vss-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+/* Controls */
+.vss-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.vss-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.vss-month-input {
+  padding: 0.6rem 0.8rem;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
-  font-size: var(--font-size-md);
-  color: var(--color-text-primary);
-  background-color: var(--color-background-alt);
+  font-size: 1rem;
+  background: var(--color-background-alt);
   cursor: pointer;
 }
 
-.admin-view-salary-slip-month-input:focus {
-  outline: none;
+.vss-month-input:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+  outline: none;
 }
 
-.salary-slip-details {
-  background-color: var(--color-background-card);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-8);
-  box-shadow: var(--shadow-md);
-}
-
-.salary-slip-details h2 {
-  font-size: var(--font-size-2xl);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-6);
-  text-align: center;
-}
-
-.salary-details-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-8);
-  margin-bottom: var(--spacing-8);
-}
-
-@media (min-width: 768px) {
-  .salary-details-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.salary-details-card {
-  background-color: var(--color-background-body);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-6);
-  border: 1px solid var(--color-border);
-}
-
-.salary-details-card h3 {
-  font-size: var(--font-size-xl);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-4);
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: var(--spacing-3);
-}
-
-.salary-details-card p {
-  font-size: var(--font-size-md);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-2);
+/* Actions */
+.vss-actions {
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
+  margin-left: auto;
 }
 
-.salary-details-card p strong {
-  color: var(--color-text-primary);
-}
-
-.net-salary-section {
-  text-align: center;
-  margin-top: var(--spacing-8);
-  padding-top: var(--spacing-6);
-  border-top: 2px solid var(--color-primary);
-}
-
-.net-salary-section h3 {
-  font-size: var(--font-size-3xl);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-bold);
-}
-
-.admin-salary-slips-coming-soon {
-  text-align: center;
-  padding: var(--spacing-10);
-  background-color: var(--color-background-card);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-md);
-}
-
-.admin-salary-slips-coming-soon h2 {
-  font-size: var(--font-size-2xl);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-4);
-}
-
-.admin-salary-slips-coming-soon p {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-6);
-}
-
-.error-message {
-  color: var(--color-danger);
-  text-align: center;
-  font-size: var(--font-size-lg);
-  margin-top: var(--spacing-6);
-}
-
-.btn {
-  /* background-color: var(--color-primary); */
-  color: var(--color-white);
-  padding: var(--spacing-3) var(--spacing-6);
+.vss-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
   border-radius: var(--border-radius-md);
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
   border: none;
   cursor: pointer;
-  font-size: var(--font-size-md);
+  transition: all 0.3s ease;
 }
 
-.pdf-viewer-container {
-  margin-top: var(--spacing-6);
+.vss-btn-preview {
+  background: var(--color-info);
+  color: #fff;
+}
+
+.vss-btn-download {
+  background: var(--color-success);
+  color: #fff;
+}
+
+.vss-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.vss-btn:disabled {
+  background: var(--color-border);
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Content */
+.vss-content {
+  margin-top: 1rem;
+}
+
+.vss-loading {
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.vss-pdf-viewer {
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-md);
 }
 
-.pdf-viewer-container iframe {
-  display: block;
+.vss-pdf-viewer iframe {
   width: 100%;
-  height: 600px; /* Adjust height as needed */
-  border: none;
+  height: 650px;
 }
 
+/* Empty state */
+.vss-empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--color-background-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+}
 
+.vss-empty-state h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.vss-empty-state p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}

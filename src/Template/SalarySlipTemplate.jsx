@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../../public/logo.jpg'; // Import the logo
 import './SalarySlipTemplate.css';
 
 const formatMonthYear = (dateString) => {
@@ -26,13 +27,15 @@ const SalarySlipTemplate = ({ salarySlipData }) => {
       {/* Company Header */}
       <div className="company-header">
         <div className="company-logo">
-          <div className="logo-placeholder">LOGO</div>
+          <img src={logo} alt="Company Logo" className="logo-img" />
         </div>
         <div className="company-details">
           <h1 className="company-name">MahaLaxmi Agencies</h1>
           <div className="company-address">
-            <p>Gokak Road, Belagavi, Karnataka 590001</p>
-            <p>Email: info@company.com | Phone: +91-XXXXXXXXXX</p>
+            <p>PLOT NO 1 AND 2 , SY NO 66/9, GURU KRUPA</p>
+            <p>BUILDING, GOKAK ROAD, Kanbargi, Belagavi,</p>
+            <p>Karnataka, 590016</p>
+            {/* <p>Email: info@company.com | Phone: +91-XXXXXXXXXX</p> */}
           </div>
         </div>
       </div>
