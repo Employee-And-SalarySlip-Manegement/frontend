@@ -1,10 +1,10 @@
 import React from 'react';
-import './SalarySlipTemplate.css'; // optional for styles
+import './SalarySlipTemplate.css';
 
 const SalarySlipTemplate = ({ salarySlipData }) => {
   if (!salarySlipData) return null;
 
-  // Extract earnings and deductions from the arrays
+  // Extract earnings and deductions from the arrays (keeping original logic)
   const basicDA = salarySlipData.earnings.find(item => item.name === 'Basic DA')?.amount || 0;
   const hra = salarySlipData.earnings.find(item => item.name === 'HRA')?.amount || 0;
   const otherAllowances = salarySlipData.earnings.find(item => item.name === 'Other Allowances')?.amount || 0;
@@ -16,63 +16,146 @@ const SalarySlipTemplate = ({ salarySlipData }) => {
 
   return (
     <div id="salary-slip" className="salary-slip">
-      {/* Header */}
-      <div className="salary-slip-header">
-        <h2>Salary Slip</h2>
-        <p>Your Company Name</p>
-        <p>123 Company Street, City, Country</p>
-        <p>Email: info@company.com</p>
+      {/* Company Header */}
+      <div className="company-header">
+        <div className="company-logo">
+          <div className="logo-placeholder">LOGO</div>
+        </div>
+        <div className="company-details">
+          <h1 className="company-name">Your Company Name</h1>
+          <div className="company-address">
+            <p>123 Company Street, City, Country</p>
+            <p>Email: info@company.com | Phone: +91-XXXXXXXXXX</p>
+          </div>
+        </div>
       </div>
 
-      {/* Employee Info */}
-      <table className="salary-slip-table">
-        <tbody>
-          <tr>
-            <td><strong>Employee ID:</strong> {salarySlipData.empId}</td>
-            <td><strong>Name:</strong> {salarySlipData.nameOfEmployee}</td>
-          </tr>
-          <tr>
-            <td><strong>Designation:</strong> {salarySlipData.designation}</td>
-            <td><strong>Month:</strong> {salarySlipData.month || "September 2025"}</td>
-          </tr>
-          <tr>
-            <td><strong>Payable Days:</strong> {salarySlipData.noOfPayableDays}</td>
-            <td><strong>Total Days:</strong> {salarySlipData.totalWorkingDays}</td>
-          </tr>
-        </tbody>
-      </table>
+      {/* Document Title */}
+      <div className="document-title">
+        <h2>SALARY SLIP</h2>
+        <div className="period">For the month of {salarySlipData.month || "September 2025"}</div>
+      </div>
 
-      {/* Earnings */}
-      <h3>Earnings</h3>
-      <table className="salary-slip-table">
-        <tbody>
-          <tr><td>Basic + DA</td><td>₹{basicDA}</td></tr>
-          <tr><td>HRA</td><td>₹{hra}</td></tr>
-          <tr><td>Other Allowances</td><td>₹{otherAllowances}</td></tr>
-          <tr className="highlight"><td>Gross Salary</td><td>₹{salarySlipData.grossSalary}</td></tr>
-        </tbody>
-      </table>
+      {/* Employee Information Section */}
+      <div className="info-section">
+        <h3 className="section-title">Employee Information</h3>
+        <div className="info-grid">
+          <div className="info-row">
+            <div className="info-item">
+              <span className="label">Employee ID:</span>
+              <span className="value">{salarySlipData.empId}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Employee Name:</span>
+              <span className="value">{salarySlipData.nameOfEmployee}</span>
+            </div>
+          </div>
+          <div className="info-row">
+            <div className="info-item">
+              <span className="label">Designation:</span>
+              <span className="value">{salarySlipData.designation}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Department:</span>
+              <span className="value">HR Department</span>
+            </div>
+          </div>
+          <div className="info-row">
+            <div className="info-item">
+              <span className="label">Payable Days:</span>
+              <span className="value">{salarySlipData.noOfPayableDays}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Total Working Days:</span>
+              <span className="value">{salarySlipData.totalWorkingDays}</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      {/* Deductions */}
-      <h3>Deductions</h3>
-      <table className="salary-slip-table">
-        <tbody>
-          <tr><td>ESI</td><td>₹{esi}</td></tr>
-          <tr><td>PF</td><td>₹{pfEe}</td></tr>
-          <tr><td>PT</td><td>₹{pt}</td></tr>
-          <tr><td>TDS</td><td>₹{tds}</td></tr>
-          <tr className="highlight"><td>Total Deductions</td><td>₹{salarySlipData.totalDeductions}</td></tr>
-        </tbody>
-      </table>
+      {/* Salary Breakdown */}
+      <div className="salary-breakdown">
+        <div className="earnings-section">
+          <h3 className="section-title earnings-title">Earnings</h3>
+          <table className="salary-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Amount (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic + DA</td>
+                <td className="amount">₹{basicDA.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr>
+                <td>House Rent Allowance (HRA)</td>
+                <td className="amount">₹{hra.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr>
+                <td>Other Allowances</td>
+                <td className="amount">₹{otherAllowances.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr className="total-row">
+                <td><strong>Gross Salary</strong></td>
+                <td className="amount"><strong>₹{salarySlipData.grossSalary.toLocaleString('en-IN')}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="deductions-section">
+          <h3 className="section-title deductions-title">Deductions</h3>
+          <table className="salary-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Amount (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Employee State Insurance (ESI)</td>
+                <td className="amount">₹{esi.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr>
+                <td>Provident Fund (PF)</td>
+                <td className="amount">₹{pfEe.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr>
+                <td>Professional Tax (PT)</td>
+                <td className="amount">₹{pt.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr>
+                <td>Tax Deducted at Source (TDS)</td>
+                <td className="amount">₹{tds.toLocaleString('en-IN')}</td>
+              </tr>
+              <tr className="total-row">
+                <td><strong>Total Deductions</strong></td>
+                <td className="amount"><strong>₹{salarySlipData.totalDeductions.toLocaleString('en-IN')}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* Net Salary */}
-      <div className="net-salary">
-        <h2>Net Salary: ₹{salarySlipData.netSalary}</h2>
+      <div className="net-salary-section">
+        <div className="net-salary-card">
+          <div className="net-salary-label">Net Salary</div>
+          <div className="net-salary-amount">₹{salarySlipData.netSalary.toLocaleString('en-IN')}</div>
+        </div>
       </div>
 
       {/* Footer */}
-      <div className="salary-slip-footer">
-        This is a computer-generated salary slip and does not require a signature.
+      <div className="footer">
+        <div className="footer-note">
+          <p><strong>Note:</strong> This is a computer-generated salary slip and does not require a physical signature.</p>
+        </div>
+        <div className="footer-details">
+          <p>Created on: {new Date(salarySlipData.createdAt).toLocaleDateString('en-IN')}</p>
+        </div>
       </div>
     </div>
   );

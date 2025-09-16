@@ -34,6 +34,7 @@ export const useSalarySlip = (employeeId, month) => {
         grossSalary: rawData.earnedWagesTotal,
         totalDeductions: rawData.employeeContributionsTotal,
         netSalary: rawData.netSalary,
+        createdAt: rawData.createdAt,
         earnings: [
           { name: 'Basic DA', amount: rawData.basicDA },
           { name: 'HRA', amount: rawData.hra },

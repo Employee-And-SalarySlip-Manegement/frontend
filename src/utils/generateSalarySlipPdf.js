@@ -5,7 +5,6 @@ export const generateSalarySlipPdf = async (salarySlipData, employeeId) => {
   if (!element) return null;
 
   const opt = {
-    margin: 0.5,
     filename: `${employeeId}-Salary-Slip-${salarySlipData.month || "Sep2025"}.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
