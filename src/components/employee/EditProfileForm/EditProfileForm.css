@@ -1,0 +1,143 @@
+.edit-profile-form-container {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  box-shadow: var(--shadow-md);
+  /* margin-top: var(--spacing-8); */
+}
+
+.edit-profile-form-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-6);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.edit-profile-form .form-group {
+  margin-bottom: var(--spacing-5);
+}
+
+.edit-profile-form label {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2);
+  font-weight: var(--font-weight-medium);
+}
+
+.edit-profile-form input[type="text"],
+.edit-profile-form input[type="email"],
+.edit-profile-form textarea {
+  width: 100%;
+  padding: var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-normal);
+}
+
+.edit-profile-form input:focus,
+.edit-profile-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.edit-profile-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.edit-profile-form .form-actions {
+  display: flex;
+  gap: var(--spacing-4);
+  justify-content: flex-end;
+  margin-top: var(--spacing-6);
+}
+
+.edit-profile-form .btn {
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: 1px solid transparent;
+}
+
+.edit-profile-form .btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.edit-profile-form .btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.edit-profile-form .btn-secondary {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+.edit-profile-form .btn-secondary:hover {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-medium);
+  color: var(--color-primary);
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .edit-profile-form-container {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-border-dark);
+}
+
+[data-theme='dark'] .edit-profile-form input,
+[data-theme='dark'] .edit-profile-form textarea {
+  background-color: var(--color-bg-primary);
+  border-color: var(--color-border-dark);
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .edit-profile-form input:focus,
+[data-theme='dark'] .edit-profile-form textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+[data-theme='dark'] .edit-profile-form .btn-secondary {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-dark);
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .edit-profile-form .btn-secondary:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.edit-profile-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-5);
+}
+
+.edit-profile-form .form-grid .form-group.full-width {
+  grid-column: 1 / -1; /* Spans across all columns */
+}
+
+@media (max-width: 768px) {
+  .edit-profile-form .form-grid {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+  }
+
+  .edit-profile-form-container{
+    margin-top: var(--spacing-9);
+  }
+}

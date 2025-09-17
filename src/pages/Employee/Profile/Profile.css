@@ -19,7 +19,6 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-8);
 }
 
 .profile-section {
@@ -86,6 +85,10 @@
 
   .section-title {
     font-size: var(--font-size-xl);
+  }
+
+  .profile-section{
+    margin-top: var(--spacing-10);
   }
 }
 
