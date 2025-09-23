@@ -5,11 +5,7 @@ const EditProfileForm = ({ user, onSave, onCancel }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    address: '',
-    bankAccountNo: '',
-    UAN: '',
-    pan: '',
-    aadhar: '',
+    address: ''
   });
 
   useEffect(() => {
@@ -17,11 +13,7 @@ const EditProfileForm = ({ user, onSave, onCancel }) => {
       setFormData({
         name: user.name || '',
         email: user.email || '',
-        address: user.address || '',
-        bankAccountNo: user.bankAccountNo || '',
-        UAN: user.UAN || '',
-        pan: user.pan || '',
-        aadhar: user.aadhar || '',
+        address: user.address || ''
       });
     }
   }, [user]);
@@ -72,46 +64,6 @@ const EditProfileForm = ({ user, onSave, onCancel }) => {
               value={formData.address || ''}
               onChange={handleChange}
             ></textarea>
-          </div>
-          <div className="form-group">
-            <label htmlFor="bankAccountNo">Bank Account No.</label>
-            <input
-              type="text"
-              id="bankAccountNo"
-              name="bankAccountNo"
-              value={formData.bankAccountNo || ''}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="UAN">UAN.</label>
-            <input
-              type="text"
-              id="UAN"
-              name="UAN"
-              value={formData.UAN || ''}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="pan">PAN</label>
-            <input
-              type="text"
-              id="pan"
-              name="pan"
-              value={formData.pan || ''}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="aadhar">Aadhar</label>
-            <input
-              type="text"
-              id="aadhar"
-              name="aadhar"
-              value={formData.aadhar || ''}
-              onChange={handleChange}
-            />
           </div>
         </div>
         <div className="form-actions">

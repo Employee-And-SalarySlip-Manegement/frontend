@@ -102,12 +102,12 @@ const AddEditEmployee = () => {
   return (
     <AdminLayout>
       <div className="addedit-employee-page">
-      <button type="button" className="btn btn-ghost" onClick={() => navigate(-1)}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-            </svg>
-            Back
-          </button>
+        <button type="button" className="btn btn-ghost" onClick={() => navigate(-1)}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back
+        </button>
         <div className="addedit-employee-header">
           <h1 className="addedit-employee-title">{isEdit ? 'Edit Employee' : 'Add Employee'}</h1>
           <p className="addedit-employee-subtitle">{isEdit ? 'Update user details' : 'Create a new employee account'}</p>
@@ -203,7 +203,12 @@ const AddEditEmployee = () => {
                     name="pan"
                     type="text"
                     value={form.pan}
-                    onChange={(e) => handleChange({ target: { ...e.target, value: e.target.value.toUpperCase() } })}
+                    onChange={(e) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        pan: e.target.value.toUpperCase(),
+                      }))
+                    }
                     placeholder="ABCDE1234F"
                     pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
                   />
@@ -218,7 +223,7 @@ const AddEditEmployee = () => {
                     value={form.aadhar}
                     onChange={handleChange}
                     inputMode="numeric"
-                    pattern="\\d{12}"
+                    pattern="[0-9]{12}"
                     placeholder="12 digit number"
                   />
                 </div>
