@@ -7,7 +7,7 @@ const EditProfileForm = ({ user, onSave, onCancel }) => {
     email: '',
     address: '',
     bankAccountNo: '',
-    pfNo: '',
+    UAN: '',
     pan: '',
     aadhar: '',
   });
@@ -19,7 +19,7 @@ const EditProfileForm = ({ user, onSave, onCancel }) => {
         email: user.email || '',
         address: user.address || '',
         bankAccountNo: user.bankAccountNo || '',
-        pfNo: user.pfNo || '',
+        UAN: user.UAN || '',
         pan: user.pan || '',
         aadhar: user.aadhar || '',
       });
@@ -84,12 +84,12 @@ const EditProfileForm = ({ user, onSave, onCancel }) => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="pfNo">PF No.</label>
+            <label htmlFor="UAN">UAN.</label>
             <input
               type="text"
-              id="pfNo"
-              name="pfNo"
-              value={formData.pfNo || ''}
+              id="UAN"
+              name="UAN"
+              value={formData.UAN || ''}
               onChange={handleChange}
             />
           </div>

@@ -27,8 +27,8 @@ const ProfileInfoCard = ({ user }) => {
             <span className="profile-info-card-value">{user.bankAccountNo}</span>
           </div>
         <div className="profile-info-card-item">
-            <span className="profile-info-card-label">PF No:</span>
-            <span className="profile-info-card-value">{user.pfNo}</span>
+            <span className="profile-info-card-label">UAN:</span>
+            <span className="profile-info-card-value">{user.UAN}</span>
           </div>
         <div className="profile-info-card-item">
             <span className="profile-info-card-label">PAN:</span>

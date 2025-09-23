@@ -32,7 +32,7 @@ const EmployeesTable = ({ users, loading, error, onEdit, onDelete, selectedId: c
                 <th>DOJ</th>
                 <th>Address</th>
                 <th>Bank A/C</th>
-                <th>PF No</th>
+                <th>UAN</th>
                 <th>PAN</th>
                 <th>Aadhar</th>
                 <th>Status</th>
@@ -65,7 +65,7 @@ const EmployeesTable = ({ users, loading, error, onEdit, onDelete, selectedId: c
                   <td className="muted">{u.doj ? new Date(u.doj).toLocaleDateString() : '—'}</td>
                   <td className="muted">{u.address || '—'}</td>
                   <td className="muted">{u.bankAccountNo || '—'}</td>
-                  <td className="muted">{u.pfNo || '—'}</td>
+                  <td className="muted">{u.UAN || '—'}</td>
                   <td className="muted">{u.pan || '—'}</td>
                   <td className="muted">{u.aadhar || '—'}</td>
                   <td>

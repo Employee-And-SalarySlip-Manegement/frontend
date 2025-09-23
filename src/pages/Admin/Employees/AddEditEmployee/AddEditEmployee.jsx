@@ -18,7 +18,7 @@ const AddEditEmployee = () => {
     doj: '',
     address: '',
     bankAccountNo: '',
-    pfNo: '',
+    UAN: '',
     pan: '',
     aadhar: '',
   });
@@ -40,7 +40,7 @@ const AddEditEmployee = () => {
         doj: u.doj ? new Date(u.doj).toISOString().slice(0, 10) : '',
         address: u.address || '',
         bankAccountNo: u.bankAccountNo || '',
-        pfNo: u.pfNo || '',
+        UAN: u.UAN || '',
         pan: u.pan || '',
         aadhar: u.aadhar || '',
       }));
@@ -71,7 +71,7 @@ const AddEditEmployee = () => {
           doj: form.doj || null,
           address: form.address.trim(),
           bankAccountNo: form.bankAccountNo.trim(),
-          pfNo: form.pfNo.trim(),
+          UAN: form.UAN.trim(),
           pan: form.pan.trim(),
           aadhar: form.aadhar.trim(),
         };
@@ -84,7 +84,7 @@ const AddEditEmployee = () => {
           doj: form.doj || null,
           address: form.address.trim(),
           bankAccountNo: form.bankAccountNo.trim(),
-          pfNo: form.pfNo.trim(),
+          UAN: form.UAN.trim(),
           pan: form.pan.trim(),
           aadhar: form.aadhar.trim(),
         };
@@ -186,12 +186,12 @@ const AddEditEmployee = () => {
                 </div>
 
                 <div className="form-row">
-                  <label htmlFor="pfNo">PF No</label>
+                  <label htmlFor="UAN">UAN</label>
                   <input
-                    id="pfNo"
-                    name="pfNo"
+                    id="UAN"
+                    name="UAN"
                     type="text"
-                    value={form.pfNo}
+                    value={form.UAN}
                     onChange={handleChange}
                   />
                 </div>
