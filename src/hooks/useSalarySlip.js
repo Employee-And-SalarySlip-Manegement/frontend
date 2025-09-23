@@ -14,10 +14,10 @@ export const useSalarySlip = (employeeId, month) => {
     setSalarySlipData(null);
     try {
       const response = await salarySlipService.getSalarySlip(employeeId, month);
-      // console.log('response', response.data);
+      console.log('response', response.data);
 
       const rawData = response.data.data;
-
+      
       if (!rawData) {
         setSalarySlipData(null);
         return;
@@ -26,30 +26,31 @@ export const useSalarySlip = (employeeId, month) => {
       // Transform data to match frontend expectations
       const transformedData = {
         month: month, // Use the month from the hook's parameter
-        empId: rawData.empId,
-        nameOfEmployee: rawData.nameOfEmployee,
-        designation: rawData.designation,
-        noOfPayableDays: rawData.noOfPayableDays,
-        totalWorkingDays: rawData.totalWorkingDays,
-        grossSalary: rawData.earnedWagesTotal,
-        totalDeductions: rawData.employeeContributionsTotal,
-        netSalary: rawData.netSalary,
-        createdAt: rawData.createdAt,
+        empId: rawData.salarySlip.empId,
+        nameOfEmployee: rawData.salarySlip.nameOfEmployee,
+        designation: rawData.salarySlip.designation,
+        noOfPayableDays: rawData.salarySlip.noOfPayableDays,
+        totalWorkingDays: rawData.salarySlip.totalWorkingDays,
+        grossSalary: rawData.salarySlip.earnedWagesTotal,
+        totalDeductions: rawData.salarySlip.employeeContributionsTotal,
+        netSalary: rawData.salarySlip.netSalary,
+        createdAt: rawData.salarySlip.createdAt,
+        user: rawData.user, // Add user data here
         earnings: [
-          { name: 'Basic DA', amount: rawData.basicDA },
-          { name: 'HRA', amount: rawData.hra },
-          { name: 'Other Allowances', amount: rawData.otherAllowances },
+          { name: 'Basic DA', amount: rawData.salarySlip.basicDA },
+          { name: 'HRA', amount: rawData.salarySlip.hra },
+          { name: 'Other Allowances', amount: rawData.salarySlip.otherAllowances },
         ].filter(item => item.amount !== undefined && item.amount !== null),
 
         deductions: [
-          { name: 'ESI', amount: rawData.esi },
-          { name: 'PF EE', amount: rawData.pfEe },
-          { name: 'PT', amount: rawData.pt },
-          { name: 'TDS', amount: rawData.tds },
+          { name: 'ESI', amount: rawData.salarySlip.esi },
+          { name: 'PF EE', amount: rawData.salarySlip.pfEe },
+          { name: 'PT', amount: rawData.salarySlip.pt },
+          { name: 'TDS', amount: rawData.salarySlip.tds },
         ].filter(item => item.amount !== undefined && item.amount !== null),
       };
 
-      console.log('Transformed Data:', transformedData);
+      // console.log('Transformed Data:', transformedData);
       setSalarySlipData(transformedData);
     } catch (err) {
       setError(err.response?.data?.message || err.message || 'Failed to fetch salary slip data.');

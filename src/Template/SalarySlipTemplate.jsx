@@ -82,6 +82,33 @@ const SalarySlipTemplate = ({ salarySlipData }) => {
         </div>
       </div>
 
+      {/* New Section for User Data */}
+      <div className="info-section">
+        <h3 className="section-title">Compliance Details</h3>
+        <div className="info-grid">
+          <div className="info-row">
+            <div className="info-item">
+              <span className="label">Bank Account No:</span>
+              <span className="value">{salarySlipData.user.bankAccountNo || "-"}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">UAN:</span>
+              <span className="value">{salarySlipData.user.UAN|| "-"}</span>
+            </div>
+          </div>
+          <div className="info-row">
+            <div className="info-item">
+              <span className="label">PAN:</span>
+              <span className="value">{salarySlipData.user.pan || "-"}</span>
+            </div>
+            <div className="info-item">
+              <span className="label">Aadhar:</span>
+              <span className="value">{salarySlipData.user.aadhar || "-"}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Salary Breakdown */}
       <div className="salary-breakdown">
         <div className="earnings-section">
@@ -156,9 +183,7 @@ const SalarySlipTemplate = ({ salarySlipData }) => {
           <div className="net-salary-amount">₹{salarySlipData.netSalary.toLocaleString('en-IN')}</div>
         </div>
       </div>
-
-      {/* Footer */}
-      <div className="footer">
+      <div className="footer-section">
         <div className="footer-note">
           <p><strong>Note:</strong> This is a computer-generated salary slip and does not require a physical signature.</p>
         </div>
