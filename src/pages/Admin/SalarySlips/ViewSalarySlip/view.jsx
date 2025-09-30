@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { useSalarySlip } from "@/hooks/useSalarySlip";
+import {useExcelSheetDownload} from "@/hooks/useExcelSheetDownload"
 import { generateSalarySlipPdf } from "@/utils/generateSalarySlipPdf";
 import SalarySlipTemplate from "@/Template/SalarySlipTemplate";
 import { toast } from "react-hot-toast";
@@ -21,11 +22,15 @@ const ViewSalarySlip = () => {
 
   const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
   const { salarySlipData, loading, error } = useSalarySlip(id, selectedMonth);
+  const { downloadExcel, isDownloading, downloadError } = useExcelSheetDownload();
   const [pdfBlobUrl, setPdfBlobUrl] = useState(null);
 
   useEffect(() => {
     if (error) {
       toast.error(`Error: ${error}`);
+    }
+    if (downloadError) {
+      toast.error(`Download Error: ${downloadError}`);
     }
     const generatePdf = async () => {
       if (salarySlipData) {
@@ -34,10 +39,15 @@ const ViewSalarySlip = () => {
       }
     };
     generatePdf();
-  }, [salarySlipData, id, error]);
+  }, [salarySlipData, id, error, downloadError]);
 
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
+  };
+
+  const handleDownloadExcel = () => {
+    const [year, month] = selectedMonth.split('-');
+    downloadExcel(month, year);
   };
 
   return (
@@ -90,7 +100,14 @@ const ViewSalarySlip = () => {
                 document.body.removeChild(link);
               }}
             >
-              <Download size={18} /> Download
+              <Download size={18} /> Download PDF
+            </button>
+            <button
+              className="vss-btn vss-btn-download-excel"
+              onClick={handleDownloadExcel}
+              disabled={isDownloading}
+            >
+              {isDownloading ? 'Downloading...' : <><Download size={18} /> Download Excel</>}
             </button>
           </div>
         </div>
