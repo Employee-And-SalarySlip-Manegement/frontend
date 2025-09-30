@@ -156,3 +156,9 @@
   font-size: 1rem;
   color: var(--color-text-secondary);
 }
+
+@media (max-width:786px) {
+  .vss-actions{
+    flex-direction: column;
+  }
+}
